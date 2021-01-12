@@ -7,15 +7,10 @@ import useStyles from './styles';
 function UsersDropdown() {
     const classes = useStyles();
     const history = useHistory();
-    const [user, setUser] = useUser();
+    const [user] = useUser();
     const usersList = useUsersList();
-    const handleChange = (event) => {
-        const selectedUser = usersList.find(user => user.id === event.target.value);
-        if (selectedUser) {
-            setUser(selectedUser);
-            history.push(`/user/${selectedUser.id}`);
-        }
-    };
+    const handleChange = (event) =>  history.push(`/user/${event.target.value}`);
+    
     return (
         <FormControl variant="filled" className={classes.formControl}>
             <InputLabel>User</InputLabel>

@@ -10,3 +10,8 @@ export function useUsersList() {
     const { usersList } = useContext(UsersContext);
     return usersList;
 }
+
+export function useSetUserById() {
+    const { setUserById } = useContext(UsersContext);
+    return setUserById;
+}

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 export const UsersContext = React.createContext({});
 
@@ -16,6 +16,13 @@ const usersList = [
 export default function UsersProvider({ children }) {
     const [ user, setUser ] = useState({});
 
+    const setUserById = id => {
+        const selectedUser = usersList.find(user => user.id === parseInt(id));
+        if (selectedUser) {
+            setUser(selectedUser);
+        }
+    }
+
     return (
 		<UsersContext.Provider
 			value={
@@ -23,6 +30,7 @@ export default function UsersProvider({ children }) {
                     user,
                     setUser,
                     usersList,
+                    setUserById,
 				}
 			}
 		>

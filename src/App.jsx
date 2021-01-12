@@ -2,6 +2,7 @@ import React from 'react';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { CssBaseline } from '@material-ui/core';
 import UsersProvider from './providers/UsersProvider';
+import ProductsProvider from './providers/ProductsProvider';
 import Routes from './routes';
 import theme from './theme';
 
@@ -9,6 +10,7 @@ function App() {
 	const providers = [
 		[ThemeProvider, { theme }],
 		[UsersProvider],
+		[ProductsProvider],
 	];
 	const appChildren = (
 		<>
