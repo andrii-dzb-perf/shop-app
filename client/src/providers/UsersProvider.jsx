@@ -1,20 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { get } from '../http/api';
 
 export const UsersContext = React.createContext({});
 
-const usersList = [
-    {
-        name: 'Andrii',
-        id: 1,
-    },
-    {
-        name: 'Nazar',
-        id: 2,
-    }
-];
-
 export default function UsersProvider({ children }) {
     const [ user, setUser ] = useState({});
+    const [ usersList, setUsersList ] = useState([]);
 
     const setUserById = id => {
         const selectedUser = usersList.find(user => user.id === parseInt(id));
@@ -22,6 +13,15 @@ export default function UsersProvider({ children }) {
             setUser(selectedUser);
         }
     }
+
+    const getUsersList = async () => {
+        const users = await get('users');
+        setUsersList(users)
+    }
+
+    useEffect(() => {
+        getUsersList();
+    }, [])
 
     return (
 		<UsersContext.Provider
