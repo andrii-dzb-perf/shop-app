@@ -21,7 +21,7 @@ export default function UsersProvider({ children }) {
 
     useEffect(() => {
         getUsersList();
-    }, [])
+    }, []);
 
     return (
 		<UsersContext.Provider
