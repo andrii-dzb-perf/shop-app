@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { get } from '../http/api';
+import { fetchUsers } from '../http/methods';
 
 export const UsersContext = React.createContext({});
 
@@ -15,7 +15,7 @@ export default function UsersProvider({ children }) {
     }
 
     const getUsersList = async () => {
-        const users = await get('users');
+        const users = await fetchUsers();
         setUsersList(users)
     }
 

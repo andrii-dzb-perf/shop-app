@@ -23,8 +23,22 @@ const useStyles = makeStyles(theme => ({
         fontWeight: 500,
         fontSize: 16,
     },
-    listItemDesc: {
-
+    addProductWrap: {
+        marginTop: theme.spacing(4),
+    },
+    modalForm: {
+        display: 'flex',
+        flexDirection: 'column',
+    },
+    input: {
+        '&:nth-child(n + 2)': {
+            marginTop: theme.spacing(2),
+        }
+    },
+    submitButton: {
+        marginTop: theme.spacing(2.5),
+        width: 'auto',
+        alignSelf: 'flex-end',
     },
 }));
 

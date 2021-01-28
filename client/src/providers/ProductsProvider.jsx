@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { useUser } from '../hooks/usersHooks';
-import { get } from '../http/api';
+import { fetchProducts } from '../http/methods';
 
 export const ProductsContext = React.createContext({});
 
 export default function ProductsCProvider({ children }) {
     const [userProducts, setUserProducts ] = useState([]);
+    const [shouldFetchProducts, setShouldFetchProducts] = useState(false);
     const [user] = useUser();
 
     const getProducts = async (id) => {
-        const products = await get(`user-products/${id}`);
+        const products = await fetchProducts(id);
         setUserProducts(products);
     }
 
@@ -19,13 +20,15 @@ export default function ProductsCProvider({ children }) {
         } else {
             setUserProducts([]);
         }
-    }, [user.id])
+        setShouldFetchProducts(false);
+    }, [user.id, shouldFetchProducts])
 
     return (
 		<ProductsContext.Provider
 			value={
 				{
                     userProducts,
+                    setShouldFetchProducts
 				}
 			}
 		>

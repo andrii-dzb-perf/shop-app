@@ -18,9 +18,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 connection.connect(function(err){
     if (err) {
-        return console.error("Ошибка: " + err.message);
+        return console.error("Error: " + err.message);
     }
-    console.log("Подключение к серверу MySQL успешно установлено");
+    console.log("Connected to MySQL");
  });
 
 app.get('/api/users', (req, res) => {
@@ -46,6 +46,20 @@ app.get('/api/user-products/:id', (req, res) => {
     connection.query(sql, (err, result, fields) => {
         if (err) throw err;
         res.send(result[0].user_products);
+    });
+});
+
+app.post('/api/user-products/add', (req, res) => {
+    const { title, description, userId } = req.body;
+    const sql = `INSERT INTO Products (product_title, product_description) VALUES ('${title}', '${description}')`;
+    connection.query(sql, (err, result, fields) => {
+        if (err) throw err;
+        const { insertId } = result;
+        const sql = `INSERT INTO UserProducts (up_user, up_product) VALUES ('${userId}', '${insertId}')`;
+        connection.query(sql, (err, result, fields) => {
+            if (err) throw err;
+            res.send('Product added');
+        });
     });
 });
 
