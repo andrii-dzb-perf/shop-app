@@ -20,14 +20,14 @@ export async function get(path) {
 	}
 }
 
-export async function post(path, data = {}) {
+export async function post(path, data = {}, isFormData) {
+	const headers = isFormData ? {} : { 'Content-Type': 'application/json' }
+	const body = isFormData ? data : JSON.stringify(data);
 	try {
 		const response = await fetch(`/api/${path}`, {
 			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify(data),
+			headers,
+			body,
 		});
 
 		/**

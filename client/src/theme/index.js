@@ -12,6 +12,9 @@ const theme = createMuiTheme({
                 color: colors.mainFontColor,
                 minHeight: '100vh',
             },
+            img: {
+              maxWidth: '100%',
+            }
           },
         },
     },

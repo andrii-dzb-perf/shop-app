@@ -23,6 +23,9 @@ const useStyles = makeStyles(theme => ({
         fontWeight: 500,
         fontSize: 16,
     },
+    listItemImg: {
+        maxWidth: '100%',
+    },
     addProductWrap: {
         marginTop: theme.spacing(4),
     },

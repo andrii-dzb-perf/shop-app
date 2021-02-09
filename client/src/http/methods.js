@@ -11,3 +11,7 @@ export const fetchUsers = async () => {
 export const addProduct = async (data) => {
 	return post('user-products/add', data);
 };
+
+export const addImageToProduct = async (formData, id) => {
+	return post(`user-products/add-image/${id}`, formData, true);
+};
